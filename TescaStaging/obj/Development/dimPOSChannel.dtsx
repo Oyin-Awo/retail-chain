@@ -1,0 +1,1875 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/9/2023 1:53:55 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="AJOKE"
+  DTS:CreatorName="AJOKE\oyinm"
+  DTS:DTSID="{FFF5F1C3-3408-47BD-B3F6-2BA8932A48E4}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.123"
+  DTS:LocaleID="4105"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{8998DE1F-DA91-49C0-B4C5-00315580D9BB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FDBC9408-0137-496E-9B62-B4FFF73F3F56}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8CB18163-DFFE-4FAD-B18C-94448625D5BE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageID">
+      <DTS:VariableValue
+        DTS:DataType="3">20</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{78BE197F-EAA9-41FC-9333-27BD462671F2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PostCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{64A1449A-BA47-45BE-8645-4DAC7C57C61C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PreCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4622296E-D70F-4B5A-ACAD-A8439C048967}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Type1Count">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{168ED850-49FE-45E4-A4AC-B8148018F8DE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Type2Count">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load Metrics"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{b588558b-3d25-4c93-9361-091400908f47}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Metrics"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{13AAB84F-79B2-4B9F-A7B5-CC01BA62AD16}"
+          SQLTask:SqlStatementSource="declare @PackageID int =?&#xA;declare @PreCount int = ?&#xA;declare @CurrentCount int = ?&#xA;declare @Type1Count int = ?&#xA;declare @Type2Count int = ?&#xA;declare @PostCount int = ?&#xA;&#xA;Insert into ctrl.metrics (PackageID, PreCount, CurrentCount, Type1Count, Type2Count, PostCount, RunDate)&#xA;Values (@PackageID, @PreCount, @CurrentCount, @Type1Count, @Type2Count, @PostCount, getdate())&#xA;Update ctrl.Package&#xA;set LastRunDate=getdate() where PackageID = @PackageID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::PackageID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::PreCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::CurrentCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::Type1Count"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="4"
+            SQLTask:DtsVariableName="User::Type2Count"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="5"
+            SQLTask:DtsVariableName="User::PostCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load POSChannel data"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{66437324-27BA-4030-AE36-0AC487B1535F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load POSChannel data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load POSChannel data\Current Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Current Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::CurrentCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load POSChannel data\Current Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load POSChannel data\Current Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Load POSChannel data\Current Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load POSChannel data\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load POSChannel data\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load POSChannel data\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load POSChannel data\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Derived Column.Outputs[Derived Column Output].Columns[EffectiveEndDate]"
+                      dataType="dbTimeStamp"
+                      description="EffectiveEndDate"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load POSChannel data\Derived Column.Outputs[Derived Column Output].Columns[EffectiveEndDate]"
+                      name="EffectiveEndDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)(@[System::ContainerStartTime])</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)(@[System::ContainerStartTime])</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load POSChannel data\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load POSChannel data\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load POSChannel data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load POSChannel data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load POSChannel data\Derived Column 1"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load POSChannel data\Derived Column 1.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load POSChannel data\Derived Column 1.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load POSChannel data\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Derived Column 1.Outputs[Derived Column Output].Columns[EffectiveStartDate]"
+                      dataType="dbTimeStamp"
+                      description="EffectiveStartDate"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load POSChannel data\Derived Column 1.Outputs[Derived Column Output].Columns[EffectiveStartDate]"
+                      name="EffectiveStartDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)(@[System::ContainerStartTime])</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)(@[System::ContainerStartTime])</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load POSChannel data\Derived Column 1.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load POSChannel data\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load POSChannel data\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load POSChannel data\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load POSChannel data\Extract POSChannel data"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Extract POSChannel data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT ChannelID, ChannelNo, DeviceModel, SerialNo, InstallationDate FROM STaging.POSChannel</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load POSChannel data\Extract POSChannel data.Connections[OleDbConnection]"
+                  connectionManagerID="{D07D200A-DBB7-4D20-85B5-9864DF120F1D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[TescaStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[ChannelID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].ExternalColumns[ChannelID]"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[ChannelID]"
+                      name="ChannelID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[ChannelNo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].ExternalColumns[ChannelNo]"
+                      length="50"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[ChannelNo]"
+                      name="ChannelNo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[DeviceModel]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].ExternalColumns[DeviceModel]"
+                      length="50"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[DeviceModel]"
+                      name="DeviceModel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[SerialNo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].ExternalColumns[SerialNo]"
+                      length="50"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[SerialNo]"
+                      name="SerialNo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[InstallationDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].ExternalColumns[InstallationDate]"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[InstallationDate]"
+                      name="InstallationDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].ExternalColumns[ChannelID]"
+                      dataType="i4"
+                      name="ChannelID" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].ExternalColumns[ChannelNo]"
+                      dataType="wstr"
+                      length="50"
+                      name="ChannelNo" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].ExternalColumns[DeviceModel]"
+                      dataType="wstr"
+                      length="50"
+                      name="DeviceModel" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].ExternalColumns[SerialNo]"
+                      dataType="wstr"
+                      length="50"
+                      name="SerialNo" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].ExternalColumns[InstallationDate]"
+                      dataType="dbDate"
+                      name="InstallationDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Error Output].Columns[ChannelID]"
+                      dataType="i4"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Error Output].Columns[ChannelID]"
+                      name="ChannelID" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Error Output].Columns[ChannelNo]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Error Output].Columns[ChannelNo]"
+                      name="ChannelNo" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Error Output].Columns[DeviceModel]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Error Output].Columns[DeviceModel]"
+                      name="DeviceModel" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Error Output].Columns[SerialNo]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Error Output].Columns[SerialNo]"
+                      name="SerialNo" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Error Output].Columns[InstallationDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Error Output].Columns[InstallationDate]"
+                      name="InstallationDate" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load POSChannel data\Insert Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[EDW].[DimPOSChannel]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load POSChannel data\Insert Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{DFE26528-4084-4788-8405-458D0494439F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[TescaEDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].Columns[ChannelID]"
+                      cachedDataType="i4"
+                      cachedName="ChannelID"
+                      externalMetadataColumnId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChannelID]"
+                      lineageId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[ChannelID]" />
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].Columns[ChannelNo]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ChannelNo"
+                      externalMetadataColumnId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChannelNo]"
+                      lineageId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[ChannelNo]" />
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].Columns[DeviceModel]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="DeviceModel"
+                      externalMetadataColumnId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[DeviceModel]"
+                      lineageId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[DeviceModel]" />
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].Columns[SerialNo]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="SerialNo"
+                      externalMetadataColumnId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SerialNo]"
+                      lineageId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[SerialNo]" />
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].Columns[InstallationDate]"
+                      cachedDataType="dbDate"
+                      cachedName="InstallationDate"
+                      externalMetadataColumnId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[InstallationDate]"
+                      lineageId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[InstallationDate]" />
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].Columns[EffectiveStartDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EffectiveStartDate"
+                      externalMetadataColumnId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveStartDate]"
+                      lineageId="Package\Load POSChannel data\Derived Column 1.Outputs[Derived Column Output].Columns[EffectiveStartDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChannelSK]"
+                      dataType="i4"
+                      name="ChannelSK" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChannelID]"
+                      dataType="i4"
+                      name="ChannelID" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChannelNo]"
+                      dataType="wstr"
+                      length="50"
+                      name="ChannelNo" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[DeviceModel]"
+                      dataType="wstr"
+                      length="50"
+                      name="DeviceModel" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SerialNo]"
+                      dataType="wstr"
+                      length="50"
+                      name="SerialNo" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[InstallationDate]"
+                      dataType="dbDate"
+                      name="InstallationDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveStartDate]"
+                      dataType="dbTimeStamp"
+                      name="EffectiveStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveEndDate]"
+                      dataType="dbTimeStamp"
+                      name="EffectiveEndDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load POSChannel data\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load POSChannel data\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load POSChannel data\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load POSChannel data\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [EDW].[DimPOSChannel] SET [EffectiveEndDate] = ? WHERE [ChannelID] = ? AND [EffectiveEndDate] IS NULL</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load POSChannel data\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{DFE26528-4084-4788-8405-458D0494439F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[TescaEDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load POSChannel data\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\OLE DB Command.Inputs[OLE DB Command Input].Columns[ChannelID]"
+                      cachedDataType="i4"
+                      cachedName="ChannelID"
+                      externalMetadataColumnId="Package\Load POSChannel data\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[ChannelID]" />
+                    <inputColumn
+                      refId="Package\Load POSChannel data\OLE DB Command.Inputs[OLE DB Command Input].Columns[EffectiveEndDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EffectiveEndDate"
+                      externalMetadataColumnId="Package\Load POSChannel data\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Load POSChannel data\Derived Column.Outputs[Derived Column Output].Columns[EffectiveEndDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="dbTimeStamp"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load POSChannel data\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Load POSChannel data\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load POSChannel data\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Load POSChannel data\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load POSChannel data\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load POSChannel data\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load POSChannel data\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load POSChannel data\Slowly Changing Dimension"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+              name="Slowly Changing Dimension"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [ChannelID], [ChannelNo], [DeviceModel], [InstallationDate], [SerialNo],[EffectiveStartDate],[EffectiveEndDate] FROM [EDW].[DimPOSChannel]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere">[EffectiveStartDate] IS NOT NULL AND [EffectiveEndDate] IS NULL</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load POSChannel data\Slowly Changing Dimension.Connections[LookupConnection]"
+                  connectionManagerID="{DFE26528-4084-4788-8405-458D0494439F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[TescaEDW]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[ChannelID]"
+                      cachedDataType="i4"
+                      cachedName="ChannelID"
+                      externalMetadataColumnId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[ChannelID]"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[ChannelID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[ChannelNo]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ChannelNo"
+                      externalMetadataColumnId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[ChannelNo]"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[ChannelNo]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[DeviceModel]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="DeviceModel"
+                      externalMetadataColumnId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[DeviceModel]"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[DeviceModel]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[InstallationDate]"
+                      cachedDataType="dbDate"
+                      cachedName="InstallationDate"
+                      externalMetadataColumnId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[InstallationDate]"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[InstallationDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[SerialNo]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="SerialNo"
+                      externalMetadataColumnId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SerialNo]"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[SerialNo]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[ChannelID]"
+                      dataType="i4"
+                      name="ChannelID" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[ChannelNo]"
+                      dataType="wstr"
+                      length="50"
+                      name="ChannelNo" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[DeviceModel]"
+                      dataType="wstr"
+                      length="50"
+                      name="DeviceModel" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[InstallationDate]"
+                      dataType="dbDate"
+                      name="InstallationDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SerialNo]"
+                      dataType="wstr"
+                      length="50"
+                      name="SerialNo" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[EffectiveStartDate]"
+                      dataType="dbTimeStamp"
+                      name="EffectiveStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[EffectiveEndDate]"
+                      dataType="dbTimeStamp"
+                      name="EffectiveEndDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load POSChannel data\Slowly Changing Dimension.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load POSChannel data\Slowly Changing Dimension.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load POSChannel data\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load POSChannel data\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load POSChannel data\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load POSChannel data\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load POSChannel data\Type2 Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Type2 Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::Type2Count</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load POSChannel data\Type2 Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load POSChannel data\Type2 Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Load POSChannel data\Type2 Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load POSChannel data\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Load POSChannel data\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Union All.Inputs[Union All Input 2].Columns[ChannelID]"
+                      cachedDataType="i4"
+                      cachedName="ChannelID"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[ChannelID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[ChannelID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Union All.Inputs[Union All Input 2].Columns[ChannelNo]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ChannelNo"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[ChannelNo]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[ChannelNo]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Union All.Inputs[Union All Input 2].Columns[DeviceModel]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="DeviceModel"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[DeviceModel]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[DeviceModel]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Union All.Inputs[Union All Input 2].Columns[SerialNo]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="SerialNo"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[SerialNo]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[SerialNo]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Union All.Inputs[Union All Input 2].Columns[InstallationDate]"
+                      cachedDataType="dbDate"
+                      cachedName="InstallationDate"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[InstallationDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[InstallationDate]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load POSChannel data\Union All.Inputs[Union All Input 3]"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Union All.Inputs[Union All Input 3].Columns[ChannelID]"
+                      cachedDataType="i4"
+                      cachedName="ChannelID"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[ChannelID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[ChannelID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Union All.Inputs[Union All Input 3].Columns[ChannelNo]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ChannelNo"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[ChannelNo]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[ChannelNo]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Union All.Inputs[Union All Input 3].Columns[DeviceModel]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="DeviceModel"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[DeviceModel]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[DeviceModel]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Union All.Inputs[Union All Input 3].Columns[SerialNo]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="SerialNo"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[SerialNo]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[SerialNo]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load POSChannel data\Union All.Inputs[Union All Input 3].Columns[InstallationDate]"
+                      cachedDataType="dbDate"
+                      cachedName="InstallationDate"
+                      lineageId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output].Columns[InstallationDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[InstallationDate]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load POSChannel data\Union All.Inputs[Union All Input 1]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[ChannelID]"
+                      dataType="i4"
+                      lineageId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[ChannelID]"
+                      name="ChannelID" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[ChannelNo]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[ChannelNo]"
+                      name="ChannelNo" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[DeviceModel]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[DeviceModel]"
+                      name="DeviceModel" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[SerialNo]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[SerialNo]"
+                      name="SerialNo" />
+                    <outputColumn
+                      refId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[InstallationDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1].Columns[InstallationDate]"
+                      name="InstallationDate" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load POSChannel data.Paths[Derived Column Output]"
+              endId="Package\Load POSChannel data\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\Load POSChannel data\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load POSChannel data.Paths[Derived Column Output1]"
+              endId="Package\Load POSChannel data\Insert Destination.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Load POSChannel data\Derived Column 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load POSChannel data.Paths[Historical Attribute Inserts Output]"
+              endId="Package\Load POSChannel data\Type2 Count.Inputs[Row Count Input 1]"
+              name="Historical Attribute Inserts Output"
+              startId="Package\Load POSChannel data\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]" />
+            <path
+              refId="Package\Load POSChannel data.Paths[New Output]"
+              endId="Package\Load POSChannel data\Current Count.Inputs[Row Count Input 1]"
+              name="New Output"
+              startId="Package\Load POSChannel data\Slowly Changing Dimension.Outputs[New Output]" />
+            <path
+              refId="Package\Load POSChannel data.Paths[OLE DB Command Output]"
+              endId="Package\Load POSChannel data\Union All.Inputs[Union All Input 2]"
+              name="OLE DB Command Output"
+              startId="Package\Load POSChannel data\OLE DB Command.Outputs[OLE DB Command Output]" />
+            <path
+              refId="Package\Load POSChannel data.Paths[OLE DB Source Output]"
+              endId="Package\Load POSChannel data\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load POSChannel data\Extract POSChannel data.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load POSChannel data.Paths[Row Count Output 1]"
+              endId="Package\Load POSChannel data\Derived Column.Inputs[Derived Column Input]"
+              name="Row Count Output 1"
+              startId="Package\Load POSChannel data\Type2 Count.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\Load POSChannel data.Paths[Row Count Output 11]"
+              endId="Package\Load POSChannel data\Union All.Inputs[Union All Input 3]"
+              name="Row Count Output 1"
+              startId="Package\Load POSChannel data\Current Count.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\Load POSChannel data.Paths[Union All Output 1]"
+              endId="Package\Load POSChannel data\Derived Column 1.Inputs[Derived Column Input]"
+              name="Union All Output 1"
+              startId="Package\Load POSChannel data\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\PostCount"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{8ABECA49-9432-4FB4-8111-2C9DF731D39F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="PostCount"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DFE26528-4084-4788-8405-458D0494439F}"
+          SQLTask:SqlStatementSource="SELECT COUNT (*) as PostCount FROM EDW.DimPOSChannel"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="PostCount"
+            SQLTask:DtsVariableName="User::PostCount" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\PreCount"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7DEF0919-0660-496D-80A5-B3BF7B5B82CA}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="PreCount"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DFE26528-4084-4788-8405-458D0494439F}"
+          SQLTask:SqlStatementSource="SELECT COUNT(*) as PreCount FROM EDW.DimPOSChannel"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="PreCount"
+            SQLTask:DtsVariableName="User::PreCount" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C0FFA665-A29D-4164-971C-CD7CD5CB2EA7}"
+      DTS:From="Package\PreCount"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load POSChannel data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{F6380BE9-092B-46F2-87CF-2B576C1F06A7}"
+      DTS:From="Package\Load POSChannel data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\PostCount" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{A7CA7366-753D-4C60-B03B-76F95AB04D8C}"
+      DTS:From="Package\PostCount"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load Metrics" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="122.666666666667,42.6666666666667"
+          Id="Package\PreCount"
+          TopLeft="92.4999986216426,30.5499994537235" />
+        <NodeLayout
+          Size="186.666666666667,42.6666666666667"
+          Id="Package\Load POSChannel data"
+          TopLeft="144.374997848645,118.299997884631" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="153.833331954976,73.2166661203901">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="83.8749992270022,45.0833317642411"
+              Start="0,0"
+              End="83.8749992270022,37.5833317642411">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5416658821206" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.5416658821206"
+                    Point2="0,22.5416658821206"
+                    Point3="4,22.5416658821206" />
+                  <mssgle:LineSegment
+                    End="79.8749992270022,22.5416658821206" />
+                  <mssgle:CubicBezierSegment
+                    Point1="79.8749992270022,22.5416658821206"
+                    Point2="83.8749992270022,22.5416658821206"
+                    Point3="83.8749992270022,26.5416658821206" />
+                  <mssgle:LineSegment
+                    End="83.8749992270022,37.5833317642411" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="126.666666666667,42.6666666666667"
+          Id="Package\PostCount"
+          TopLeft="154.99999769032,206.699996303916" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="237.708331181978,160.966664551298">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-19.3750001583248,45.7333317526181"
+              Start="0,0"
+              End="-19.3750001583248,38.2333317526181">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.8666658763091" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.8666658763091"
+                    Point2="0,22.8666658763091"
+                    Point3="-4,22.8666658763091" />
+                  <mssgle:LineSegment
+                    End="-15.3750001583248,22.8666658763091" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15.3750001583248,22.8666658763091"
+                    Point2="-19.3750001583248,22.8666658763091"
+                    Point3="-19.3750001583248,26.8666658763091" />
+                  <mssgle:LineSegment
+                    End="-19.3750001583248,38.2333317526181" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="139.333333333334,42.6666666666667"
+          Id="Package\Load Metrics"
+          TopLeft="147.499997802079,315.249994362891" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="217.749997746199,249.366662970583">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65.8833313923081"
+              Start="0,0"
+              End="0,58.3833313923081">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.3833313923081" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load POSChannel data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="196.666666666667,42.6666666666667"
+          Id="Package\Load POSChannel data\Extract POSChannel data"
+          TopLeft="134.5,5.49999999999993" />
+        <NodeLayout
+          Size="209.333333333334,42.6666666666667"
+          Id="Package\Load POSChannel data\Slowly Changing Dimension"
+          TopLeft="122.541666750486,86.0666670618453" />
+        <EdgeLayout
+          Id="Package\Load POSChannel data.Paths[OLE DB Source Output]"
+          TopLeft="230.020833375243,48.1666666666666">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.9000003951787"
+              Start="0,0"
+              End="0,30.4000003951787">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.4000003951787" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\Load POSChannel data\Derived Column"
+          TopLeft="47.4999995529651,275.183332182665" />
+        <NodeLayout
+          Size="166.666666666667,42.6666666666667"
+          Id="Package\Load POSChannel data\OLE DB Command"
+          TopLeft="49.8749993387611,357.049999221265" />
+        <EdgeLayout
+          Id="Package\Load POSChannel data.Paths[Derived Column Output]"
+          TopLeft="124.833332886298,317.849998849332">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.37499978579595,39.200000371933"
+              Start="0,0"
+              End="8.37499978579595,31.700000371933">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.6000001859665" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.6000001859665"
+                    Point2="0,19.6000001859665"
+                    Point3="4,19.6000001859665" />
+                  <mssgle:LineSegment
+                    End="4.37499978579595,19.6000001859665" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.37499978579595,19.6000001859665"
+                    Point2="8.37499978579595,19.6000001859665"
+                    Point3="8.37499978579595,23.6000001859665" />
+                  <mssgle:LineSegment
+                    End="8.37499978579595,31.700000371933" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="121.333333333334,42.6666666666667"
+          Id="Package\Load POSChannel data\Union All"
+          TopLeft="315.291664533938,465.566665783326" />
+        <EdgeLayout
+          Id="Package\Load POSChannel data.Paths[OLE DB Command Output]"
+          TopLeft="133.208332672094,399.716665887932">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="223.861109639622,65.849999895394"
+              Start="0,0"
+              End="223.861109639622,58.349999895394">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.9957700031292" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.9957700031292"
+                    Point2="0,38.9957700031292"
+                    Point3="4,38.9957700031292" />
+                  <mssgle:LineSegment
+                    End="219.861109639622,38.9957700031292" />
+                  <mssgle:CubicBezierSegment
+                    Point1="219.861109639622,38.9957700031292"
+                    Point2="223.861109639622,38.9957700031292"
+                    Point3="223.861109639622,42.9957700031292" />
+                  <mssgle:LineSegment
+                    End="223.861109639622,58.349999895394" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Load POSChannel data\Derived Column 1"
+          TopLeft="150.833333333333,518.833333333333" />
+        <EdgeLayout
+          Id="Package\Load POSChannel data.Paths[Union All Output 1]"
+          TopLeft="315.291664533938,486.899999116659">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-82.4583312006048,31.9333342166742"
+              Start="0,0"
+              End="-82.4583312006048,24.4333342166742">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-78.4583312006048,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-78.4583312006048,0"
+                    Point2="-82.4583312006048,0"
+                    Point3="-82.4583312006048,4" />
+                  <mssgle:LineSegment
+                    End="-82.4583312006048,24.4333342166742" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Load POSChannel data\Insert Destination"
+          TopLeft="150.833333333333,621.5" />
+        <EdgeLayout
+          Id="Package\Load POSChannel data.Paths[Derived Column Output1]"
+          TopLeft="232.833333333333,561.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="140,42.6666666666667"
+          Id="Package\Load POSChannel data\Type2 Count"
+          TopLeft="47.499999292195,200.099998210072" />
+        <EdgeLayout
+          Id="Package\Load POSChannel data.Paths[Historical Attribute Inserts Output]"
+          TopLeft="193.652777861597,128.733333728512">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-76.1527785694019,71.3666644815605"
+              Start="0,0"
+              End="-76.1527785694019,63.8666644815605">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.8714698281913" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.8714698281913"
+                    Point2="0,28.8714698281913"
+                    Point3="-4,28.8714698281913" />
+                  <mssgle:LineSegment
+                    End="-72.1527785694019,28.8714698281913" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-72.1527785694019,28.8714698281913"
+                    Point2="-76.1527785694019,28.8714698281913"
+                    Point3="-76.1527785694019,32.8714698281914" />
+                  <mssgle:LineSegment
+                    End="-76.1527785694019,63.8666644815605" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-113.132776003451,33.8714698281914,150.1127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load POSChannel data.Paths[Row Count Output 1]"
+          TopLeft="121.166666089247,242.766664876739">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.4166673059263"
+              Start="0,0"
+              End="0,24.9166673059263">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.9166673059263" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="145.333333333334,42.6666666666667"
+          Id="Package\Load POSChannel data\Current Count"
+          TopLeft="359.999994635582,250.149997315109" />
+        <EdgeLayout
+          Id="Package\Load POSChannel data.Paths[New Output]"
+          TopLeft="260.763888972708,128.733333728512">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="171.902772329541,121.416663586597"
+              Start="0,0"
+              End="171.902772329541,113.916663586597">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.1192570767522" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.1192570767522"
+                    Point2="0,49.1192570767522"
+                    Point3="4,49.1192570767522" />
+                  <mssgle:LineSegment
+                    End="167.902772329541,49.1192570767522" />
+                  <mssgle:CubicBezierSegment
+                    Point1="167.902772329541,49.1192570767522"
+                    Point2="171.902772329541,49.1192570767522"
+                    Point3="171.902772329541,53.1192570767522" />
+                  <mssgle:LineSegment
+                    End="171.902772329541,113.916663586597" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="58.8599994460204,54.1192570767522,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load POSChannel data.Paths[Row Count Output 11]"
+          TopLeft="432.666661302249,292.816663981775">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-37.8194412127551,172.75000180155"
+              Start="0,0"
+              End="-37.8194412127551,165.25000180155">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,98.3009772056903" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,98.3009772056903"
+                    Point2="0,102.30097720569"
+                    Point3="-4,102.30097720569" />
+                  <mssgle:LineSegment
+                    End="-33.8194412127551,102.30097720569" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-33.8194412127551,102.30097720569"
+                    Point2="-37.8194412127551,102.30097720569"
+                    Point3="-37.8194412127551,106.30097720569" />
+                  <mssgle:LineSegment
+                    End="-37.8194412127551,165.25000180155" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load POSChannel data\Extract POSChannel data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load POSChannel data\Slowly Changing Dimension">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionID&gt;{DFE26528-4084-4788-8405-458D0494439F}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[EDW].[DimPOSChannel]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Extract POSChannel data.Outputs[OLE DB Source Output].Columns[ChannelID]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;ChannelID&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Extract POSChannel data.Outputs[OLE DB Source Output].Columns[ChannelNo]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;ChannelNo&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Extract POSChannel data.Outputs[OLE DB Source Output].Columns[DeviceModel]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;DeviceModel&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Extract POSChannel data.Outputs[OLE DB Source Output].Columns[InstallationDate]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;InstallationDate&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Extract POSChannel data.Outputs[OLE DB Source Output].Columns[SerialNo]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;SerialNo&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Union All&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column 1&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;true&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;true&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn&gt;EffectiveStartDate&lt;/StartDateColumn&gt;
+  &lt;EndDateColumn&gt;EffectiveEndDate&lt;/EndDateColumn&gt;
+  &lt;DateVariable&gt;System::ContainerStartTime&lt;/DateVariable&gt;
+  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
